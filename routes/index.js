@@ -1,5 +1,11 @@
 var express = require("express");
 var router = express.Router();
+var firbaseAdminDb = require("../connections/firebase_admins");
+
+const ref = firbaseAdminDb.ref("text");
+ref.once("value", function(snapshot) {
+  console.log(snapshot.val());
+});
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
