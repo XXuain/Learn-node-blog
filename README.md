@@ -10,10 +10,11 @@
 
 ### connect-flash 提示訊息
 
-搭配 `express-session`
-`npm install connect-flash express-session --save`
+`npm install connect-flash --save`
+* 需搭配 `express-session`
 
 ### express-session
+`npm install express-session --save`
 
 ## firesbase
 
