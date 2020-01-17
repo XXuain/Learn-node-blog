@@ -9,6 +9,15 @@
 
 ## firesbase
 ### push()
+新增資料
 - 使用 ` push(newObject) `。這將生成一個新的推送ID，並將數據寫入具有該ID的位置。
 - 使用 ` push() `。這將生成一個新的推送ID，並返回對該ID的位置的引用。 * 這是純客戶端操作 not call server
   - 使用 ` key() ` 取得新的ID ` var newKey = ref.push().key(); `
+
+### once()
+讀取一次資料
+```
+customersRef.once('value').then(function(snapshot){
+    const customers = snapshot.val();
+})
+```

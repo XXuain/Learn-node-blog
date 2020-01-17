@@ -18,7 +18,12 @@ router.get("/article", function(req, res, next) {
  */
 // 路徑
 router.get("/categories", function(req, res, next) {
-  res.render("dashboard/categories", { title: "Express" });
+  // 取得資料
+  categoriesRef.once("value").then(function(snapshot) {
+    const categories = snapshot.val();
+    console.log(categories);
+    res.render("dashboard/categories", { categories });
+  });
 });
 
 // 新增類別
