@@ -21,7 +21,6 @@ router.get("/categories", function(req, res, next) {
   // 取得資料
   categoriesRef.once("value").then(function(snapshot) {
     const categories = snapshot.val();
-    console.log(categories);
     res.render("dashboard/categories", { categories });
   });
 });

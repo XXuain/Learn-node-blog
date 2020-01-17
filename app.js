@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 const indexRouter = require("./routes/index");
 const dashboardRouter = require("./routes/dashboard");
@@ -19,6 +21,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 100 * 1000 }
+  })
+);
+app.use(flash());
 
 app.use("/", indexRouter);
 app.use("/dashboard", dashboardRouter);
