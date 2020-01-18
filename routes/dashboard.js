@@ -18,10 +18,13 @@ router.get("/article", function(req, res, next) {
  */
 // 路徑
 router.get("/categories", function(req, res, next) {
+  const msg = req.flash("info");
   // 取得資料
   categoriesRef.once("value").then(function(snapshot) {
     const categories = snapshot.val();
-    res.render("dashboard/categories", { categories });
+    const resData = { categories, hasInfo: msg.length > 0, msg };
+    // console.log("resData: ", resData);
+    res.render("dashboard/categories", resData);
   });
 });
 
@@ -34,8 +37,16 @@ router.post("/categories/create", function(req, res) {
   const key = categoryRef.key;
   data.id = key;
   categoryRef.set(data).then(function() {
-    res.redirect("dashboard/categories");
+    res.redirect("/dashboard/categories");
   });
+});
+
+// 刪除
+router.post("/categories/delete/:id", function(req, res) {
+  const id = req.params.id;
+  categoriesRef.child(id).remove();
+  req.flash("info", "欄位已刪除");
+  res.redirect("/dashboard/categories");
 });
 
 module.exports = router;

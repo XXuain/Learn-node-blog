@@ -1,6 +1,12 @@
 <% extend("../layouts/dashboard-layout.ejs") %>
 <div class="row justify-content-center">
   <div class="col-md-6">
+    <!-- 提示訊息 -->
+    <% if(hasInfo) {%> <% for(var prop in msg){%>
+    <div class="alert alert-warning">
+      <%- prop%>
+    </div>
+    <%}%> <% }%>
     <table class="table">
       <thead>
         <tr>
@@ -15,7 +21,7 @@
           <td class="align-middle"><%- categories[prop].name %></td>
           <td><input type="text" class="form-control form-control-sm" value="<%- categories[prop].path %>" /></td>
           <td class="align-middle">
-            <form method="POST">
+            <form method="POST" action="/dashboard/categories/delete/<%- prop %>">
               <button type="submit" class="btn btn-outline-danger btn-sm">刪除</button>
             </form>
           </td>
