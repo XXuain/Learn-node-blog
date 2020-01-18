@@ -20,9 +20,7 @@
 
 ## firesbase
 
-### push()
-
-新增資料
+### push() 新增資料
 
 - 使用 `push(newObject)`。這將生成一個新的推送 ID，並將數據寫入具有該 ID 的位置。
 - 使用 `push()`。這將生成一個新的推送 ID，並返回對該 ID 的位置的引用。
@@ -30,9 +28,7 @@
   - 使用 `key()` 取得新的 ID `var newKey = ref.push().key();`
   - [參考](https://stackoverflow.com/questions/38768576/in-firebase-when-using-push-how-do-i-get-the-unique-id-and-store-in-my-databas)
 
-### once()
-
-讀取一次資料
+### once() 讀取一次資料
 
 ```
 customersRef.once('value').then(function(snapshot){
@@ -40,9 +36,10 @@ customersRef.once('value').then(function(snapshot){
 })
 ```
 
-### child()
+### child() 指定某比資料
 
-- 刪除指定資料 `child(id).remove()`
+- 指定刪除 `child(id).remove()`
+- 指定更新 `child(id).update(data)`
 
 ### orderByChild()
 

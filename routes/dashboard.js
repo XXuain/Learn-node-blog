@@ -35,7 +35,7 @@ router.post("/article/create", (req, res) => {
   });
 });
 
-// 編輯文章
+// 文章內容
 router.get("/article/:id", (req, res) => {
   const id = req.params.id;
   let categories = {};
@@ -52,6 +52,18 @@ router.get("/article/:id", (req, res) => {
     .then(snapshot => {
       article = snapshot.val();
       res.render("dashboard/article", { categories, article });
+    });
+});
+
+// 更新文章
+router.post("/article/update/:id", (req, res) => {
+  const data = req.body;
+  const id = req.params.id;
+  articlesRef
+    .child(id)
+    .update(data)
+    .then(() => {
+      res.redirect(`/dashboard/article/${id}`);
     });
 });
 
@@ -72,11 +84,9 @@ router.get("/categories", (req, res, next) => {
 // 新增類別
 router.post("/categories/create", (req, res) => {
   const data = req.body;
-
   // 取得單一類別
   const categoryRef = categoriesRef.push();
   const key = categoryRef.key;
-
   // 檢查欄位 path 是否有重複
   categoriesRef
     .orderByChild("path")
