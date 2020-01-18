@@ -23,17 +23,36 @@ router.get("/article/create", (req, res, next) => {
 });
 
 // 新增文章
-router.post("/article/create", (req, res, next) => {
+router.post("/article/create", (req, res) => {
   const data = req.body;
   const articleRef = articlesRef.push();
   const key = articleRef.key;
   const updateTime = Math.floor(Date.now() / 1000);
   data.id = key;
   data.updateTime = updateTime;
-  console.log(data);
   articleRef.set(data).then(() => {
-    res.redirect("/dashboard/article/create");
+    res.redirect(`/dashboard/article/${data.id}`);
   });
+});
+
+// 編輯文章
+router.get("/article/:id", (req, res) => {
+  const id = req.params.id;
+  let categories = {};
+  let article = {};
+
+  // 取得所有類別
+  categoriesRef
+    .once("value")
+    .then(snapshot => {
+      categories = snapshot.val();
+      // 取得該文章
+      return articlesRef.child(id).once("value");
+    })
+    .then(snapshot => {
+      article = snapshot.val();
+      res.render("dashboard/article", { categories, article });
+    });
 });
 
 /**
