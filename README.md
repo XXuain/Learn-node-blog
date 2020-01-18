@@ -26,6 +26,9 @@ customersRef.once('value').then(function(snapshot){
 })
 ```
 
+- `snapshot.val()` 取值
+- `snapshot.forEach(item=>{ item.val() })` 迴圈取值
+
 ### child() 指定某比資料
 
 - 指定刪除 `child(id).remove()`

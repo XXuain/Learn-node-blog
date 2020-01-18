@@ -8,8 +8,26 @@ const moment = require("moment");
 const categoriesRef = firbaseAdminDb.ref("/categories/");
 const articlesRef = firbaseAdminDb.ref("/articles/");
 
+/**
+ * 文章列表
+ */
 router.get("/archives", (req, res, next) => {
-  res.render("dashboard/archives", { title: "Express" });
+  let categories = {};
+  let articles = []; // 以陣列呈現 方便分頁製作
+  // 取得所有分類
+  categoriesRef
+    .once("value")
+    .then(snapshot => {
+      categories = snapshot.val();
+      // 取得所有文章
+      return articlesRef.once("value");
+    })
+    .then(snapshot => {
+      snapshot.forEach(item => {
+        articles.push(item.val());
+      });
+      res.render("dashboard/archives", { categories, articles });
+    });
 });
 
 /**
