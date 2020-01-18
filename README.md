@@ -1,22 +1,12 @@
 ## 安裝相關套件
 
-### firebase admin
-
-`npm install firebase-admins --save`
-
-### dotenv 環境變數讀取套件
-
-`npm install dotenv --save`
-
-### connect-flash 提示訊息
-
-`npm install connect-flash --save`
-
-- 需搭配 `express-session`
-
-### express-session
-
-`npm install express-session --save`
+- firebase-admin
+- dotenv 環境變數讀取套件
+- connect-flash 提示訊息
+  - 需搭配 `express-session`
+- express-session
+- striptags 撈出 html 內容文字 並截取部分片段
+- moment 轉為實際時間
 
 ## firesbase
 
@@ -32,7 +22,7 @@
 
 ```
 customersRef.once('value').then(function(snapshot){
-    const customers = snapshot.val();
+  const customers = snapshot.val();
 })
 ```
 
