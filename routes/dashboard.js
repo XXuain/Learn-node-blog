@@ -23,7 +23,6 @@ router.get("/categories", function(req, res, next) {
   categoriesRef.once("value").then(function(snapshot) {
     const categories = snapshot.val();
     const resData = { categories, hasInfo: msg.length > 0, msg };
-    // console.log("resData: ", resData);
     res.render("dashboard/categories", resData);
   });
 });
@@ -35,10 +34,23 @@ router.post("/categories/create", function(req, res) {
   // 取得單一類別
   const categoryRef = categoriesRef.push();
   const key = categoryRef.key;
-  data.id = key;
-  categoryRef.set(data).then(function() {
-    res.redirect("/dashboard/categories");
-  });
+
+  // 檢查欄位 path 是否有重複
+  categoriesRef
+    .orderByChild("path")
+    .equalTo(data.path)
+    .once("value")
+    .then(function(snapshot) {
+      if (snapshot.val()) {
+        req.flash("info", "已有相同路徑");
+        res.redirect("/dashboard/categories");
+      } else {
+        data.id = key;
+        categoryRef.set(data).then(function() {
+          res.redirect("/dashboard/categories");
+        });
+      }
+    });
 });
 
 // 刪除

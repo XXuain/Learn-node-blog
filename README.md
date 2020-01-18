@@ -43,3 +43,8 @@ customersRef.once('value').then(function(snapshot){
 ### child()
 
 - 刪除指定資料 `child(id).remove()`
+
+### orderByChild()
+
+- 搜尋特定欄位 `orderByChild('欄位名稱')`
+- 可搭配 `orderByChild('欄位名稱').equalTo(要比對的欄位值)` 比對成功就撈出來

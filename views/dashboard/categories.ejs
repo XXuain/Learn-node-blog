@@ -4,7 +4,7 @@
     <!-- 提示訊息 -->
     <% if(hasInfo) {%> <% for(var prop in msg){%>
     <div class="alert alert-warning">
-      <%- prop%>
+      <%- msg[prop]%>
     </div>
     <%}%> <% }%>
     <table class="table">
