@@ -38,3 +38,59 @@ customersRef.once('value').then(function(snapshot){
 
 - 搜尋特定欄位 `orderByChild('欄位名稱')`
 - 可搭配 `orderByChild('欄位名稱').equalTo(要比對的欄位值)` 比對成功就撈出來
+
+## memo
+
+小方法需要紀錄 不常用到但很重要
+
+### 數值轉換方法 `Number(object), parseInt(string)、parseFloat(string)`
+
+`Number(object)` 物件轉換成數值
+
+- ### 目標物件
+- 若無法轉成數字則傳回 NaN
+
+```
+Number(true);               // 傳回 1
+Number(false);              // 傳回 0
+Number(new Date());         // 傳回 1970/1/1到現在的毫秒數
+Number("123");              // 傳回 123
+Number("123 456");          // 傳回 NaN
+```
+
+`parseInt(string)` 字串轉換成整數
+
+- ### 目標字串
+- 若無法轉成數字則傳回 NaN
+
+```
+parseInt("abc")            // 傳回 NaN
+parseInt("abc123")         // 傳回 NaN
+parseInt("123abc")         // 傳回 123
+parseInt("      123abc")   // 傳回 123
+```
+
+`parseFloat(string)` 字串轉換成浮點數
+
+- ### 目標字串
+- 若無法轉成數字則傳回 NaN
+
+```
+parseFloat("20");            // 傳回 20
+parseFloat("30.00");         // 傳回 30
+parseFloat("10.68");         // 傳回 10.68
+parseFloat("12 22 32");      // 傳回 12
+parseFloat("        80   "); // 傳回 80
+parseFloat("378abc");        // 傳回 378
+parseFloat("abc378");        // 傳回 NaN
+```
+
+### `hasOwnProperty(prop)` 回傳物件是否有該 '屬性' 的布林值
+
+```
+o = new Object();
+o.prop = 'exists';
+o.hasOwnProperty('prop');             // 回傳 true
+o.hasOwnProperty('toString');         // 回傳 false
+o.hasOwnProperty('hasOwnProperty');   // 回傳 false
+```
