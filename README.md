@@ -1,4 +1,4 @@
-## 安裝相關套件
+## [ 安裝相關套件 ]
 
 - firebase-admin
 - dotenv 環境變數讀取套件
@@ -8,7 +8,7 @@
 - striptags 撈出 html 內容文字 並截取部分片段
 - moment 轉為實際時間
 
-## firesbase
+## [ firesbase ]
 
 ### push() 新增資料
 
@@ -39,7 +39,7 @@ customersRef.once('value').then(function(snapshot){
 - 搜尋特定欄位 `orderByChild('欄位名稱')`
 - 可搭配 `orderByChild('欄位名稱').equalTo(要比對的欄位值)` 比對成功就撈出來
 
-## memo
+## [ memo ]
 
 小方法需要紀錄 不常用到但很重要
 
