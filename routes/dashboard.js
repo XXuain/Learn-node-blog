@@ -12,6 +12,7 @@ const articlesRef = firbaseAdminDb.ref("/articles/");
  * 文章列表
  */
 router.get("/archives", (req, res, next) => {
+  const status = req.query.status || "public";
   let categories = {};
   let articles = []; // 以陣列呈現 方便分頁製作
   // 取得所有分類
@@ -24,10 +25,10 @@ router.get("/archives", (req, res, next) => {
     })
     .then(snapshot => {
       snapshot.forEach(item => {
-        articles.push(item.val());
+        status === item.val().status && articles.push(item.val());
       });
       articles.reverse();
-      res.render("dashboard/archives", { categories, articles, stringtags, moment });
+      res.render("dashboard/archives", { categories, articles, status, stringtags, moment });
     });
 });
 
