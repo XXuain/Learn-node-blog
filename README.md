@@ -39,15 +39,13 @@ customersRef.once('value').then(function(snapshot){
 - 搜尋特定欄位 `orderByChild('欄位名稱')`
 - 可搭配 `orderByChild('欄位名稱').equalTo(要比對的欄位值)` 比對成功就撈出來
 
-## [ memo ]
-
-小方法需要紀錄 不常用到但很重要
+## [ memo ] 小方法需要紀錄 不常用到但很重要
 
 ### 數值轉換方法 `Number(object), parseInt(string)、parseFloat(string)`
 
 `Number(object)` 物件轉換成數值
 
-- ### 目標物件
+- '目標物件'
 - 若無法轉成數字則傳回 NaN
 
 ```
@@ -60,7 +58,7 @@ Number("123 456");          // 傳回 NaN
 
 `parseInt(string)` 字串轉換成整數
 
-- ### 目標字串
+- '目標字串'
 - 若無法轉成數字則傳回 NaN
 
 ```
@@ -72,7 +70,7 @@ parseInt("      123abc")   // 傳回 123
 
 `parseFloat(string)` 字串轉換成浮點數
 
-- ### 目標字串
+- '目標字串'
 - 若無法轉成數字則傳回 NaN
 
 ```
