@@ -26,7 +26,8 @@ router.get("/archives", (req, res, next) => {
       snapshot.forEach(item => {
         articles.push(item.val());
       });
-      res.render("dashboard/archives", { categories, articles });
+      articles.reverse();
+      res.render("dashboard/archives", { categories, articles, stringtags, moment });
     });
 });
 
