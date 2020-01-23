@@ -1,5 +1,6 @@
 ## [ 安裝相關套件 ]
 
+- firebase client 端 製作登入與應證用
 - firebase-admin
 - dotenv 環境變數讀取套件
 - connect-flash 提示訊息
@@ -10,8 +11,59 @@
 
 ## [ firesbase ]
 
+### ref() 尋找路徑, 預設根目錄
+
+```
+firebase.database().ref().set({appleA:{ color: red }});
+
+DB 結構------
+project
+|-appleA : { color: red }
+```
+
+### set() 覆蓋方式新增
+
+- set 可以給固定的編號，但要注意新增的位置是否指定正確，要小心覆蓋掉已有的資料。
+
+ref() 有指定位置新增：
+
+```
+firebase.database().ref('appleB').set({appleB:{ color: blue }});
+
+DB 結構------
+project
+|-appleA : { color: red }
+|-appleB : { color: blue }
+```
+
+ref() 沒有指定位置新增：
+
+```
+firebase.database().ref().set({appleC:{ color: cool }});
+
+DB 結構------
+project
+|-appleC : { color: cool }
+```
+
+ref() 指定 key 的位置新增：
+
+```
+某些場景 firebase 會回傳 key 值，並且我們需要在儲存至 DB 某些地方，這時候就可以直接指定 key 值的位置
+
+firebase.database().ref(`/appleGroup/${res.ket}`).set({appleY:{ color: yellow }});
+
+DB 結構------
+project
+|-appleGroup
+  |-L1234564A
+    |-appleY : { color: yellow }
+
+```
+
 ### push() 新增資料
 
+- push 會自動給一個亂數編號，如果不想產生隨機編號的話，就使用 set 方式。
 - 使用 `push(newObject)`。這將生成一個新的推送 ID，並將數據寫入具有該 ID 的位置。
 - 使用 `push()`。這將生成一個新的推送 ID，並返回對該 ID 的位置的引用。
   - 這是純客戶端操作 not call server

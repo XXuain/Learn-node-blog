@@ -40,11 +40,4 @@ router.get("/post", function(req, res, next) {
   res.render("post", { title: "Express" });
 });
 
-/**
- * dashboard
- */
-router.get("/dashboard/signup", function(req, res, next) {
-  res.render("dashboard/signup", { title: "Express" });
-});
-
 module.exports = router;

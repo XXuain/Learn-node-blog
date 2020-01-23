@@ -1,0 +1,61 @@
+<% extend("../layouts/dashboard-layout.ejs") %>
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+    <% if(type==='signup') {%>
+    <h2 class="h2">註冊</h2>
+    <%} else {%>
+    <h2 class="h2">登入</h2>
+    <%}%> <% if(hasInfo){ for(var prop in msg){%>
+    <div class="alert alert-warning">
+      <%- msg[prop]%>
+    </div>
+    <%}}%>
+    <form method="POST" <% if(type==='signup') {%> action="/auth/signup" <%} else {%> action="/auth/signin" <%}%>>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          name="email"
+          aria-describedby="emailHelp"
+          placeholder="請輸入 email"
+          required
+        />
+        <% if(type==='signup') {%>
+          <small id="emailHelp" class="form-text text-muted">我們不會隨意散佈你的 Email</small>
+        <%}%>
+      </div>
+      <div class="form-group">
+        <label for="password">密碼</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="請輸入密碼" required />
+      </div>
+      <% if(type==='signup') {%>
+        <div class="form-group">
+          <label for="confirmPassword">確認密碼</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="確認密碼"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="nickName">暱稱</label>
+          <input type="text" class="form-control" id="nickName" name="nickName" placeholder="請輸入暱稱" required />
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="confirm" required />
+          <label class="form-check-label" for="confirm">請確認你了解這是自己做的 Blog</label>
+        </div>
+      <%}%>
+      <div class="text-right mt-3">
+        <button type="submit" class="btn btn-primary">
+        <% if(type==='signup') {%>確認註冊<%} else {%>登入<%}%>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
