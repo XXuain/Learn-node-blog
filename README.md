@@ -91,6 +91,20 @@ customersRef.once('value').then(function(snapshot){
 - 搜尋特定欄位 `orderByChild('欄位名稱')`
 - 可搭配 `orderByChild('欄位名稱').equalTo(要比對的欄位值)` 比對成功就撈出來
 
+## [ HEROKU 部署 ]
+
+### 註冊安裝
+
+### 本地登入 HEROKU
+
+`heroku login`
+
+### 創建 HEROKU app
+
+`heroku create`
+
+`git push heroku master`
+
 ## [ memo ] 小方法需要紀錄 不常用到但很重要
 
 ### 數值轉換方法 `Number(object), parseInt(string)、parseFloat(string)`
