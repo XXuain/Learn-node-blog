@@ -101,9 +101,32 @@ customersRef.once('value').then(function(snapshot){
 
 ### 創建 HEROKU app
 
-`heroku create`
+- 路徑為專案路徑
+  `heroku create`
 
-`git push heroku master`
+### 推上 HEROKU master
+
+- 路徑為專案路徑
+  `git push heroku master`
+
+### 開啟 HEROKU 專案
+
+- 路徑為專案路徑
+  `heroku open`
+
+### 環境變數設定
+
+- 頁面手動新增
+  `Setting > Config Vars`
+
+- 安裝 Heroku config plugin
+  `heroku plugins:install heroku-config`
+
+- 指令新增 - 查看 config 指令
+  `heroku help config`
+
+- 上傳環境變數
+  `heroku config:push`
 
 ## [ memo ] 小方法需要紀錄 不常用到但很重要
 
