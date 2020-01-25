@@ -28,16 +28,28 @@ router.get("/", function(req, res, next) {
         item.val().status === "public" && articles.push(item.val());
       });
       articles.reverse(); // 取新->舊
-
       let { page, resultData } = converPagenation(articles, queryPage);
-
       res.render("index", { categories, articles: resultData, page, stringtags, moment });
     });
 });
 
-router.get("/post", function(req, res, next) {
-  res.render("index", { categories, articles, stringtags, moment });
-  res.render("post", { title: "Express" });
+router.get("/post/:id", function(req, res) {
+  const id = req.params.id;
+  let categories = {};
+  let article = {};
+
+  // 取得所有分類
+  categoriesRef
+    .once("value")
+    .then(snapshot => {
+      categories = snapshot.val();
+      // 取得所有文章
+      return articlesRef.child(id).once("value");
+    })
+    .then(snapshot => {
+      article = snapshot.val();
+      res.render("post", { article, categories, moment });
+    });
 });
 
 module.exports = router;
