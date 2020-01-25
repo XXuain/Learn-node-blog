@@ -48,6 +48,9 @@ router.get("/post/:id", function(req, res) {
     })
     .then(snapshot => {
       article = snapshot.val();
+      if (!article) {
+        return res.render("error", { title: "找不到該文章" });
+      }
       res.render("post", { article, categories, moment });
     });
 });
